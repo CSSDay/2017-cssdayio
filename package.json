@@ -1,0 +1,82 @@
+{
+  "name": "2017-cssdayio",
+  "version": "1.0.0",
+  "description": "Promotional website for the CSSDay 2017 conference",
+  "scripts": {
+    "start": "yarn run browser_sync & cross-env NODE_ENV=development nodemon --exec 'node index && browser-sync reload'",
+    "browser_sync": "browser-sync start --server public --no-ui --no-notify",
+    "build": "cross-env NODE_ENV=production node index",
+    "precommit": "lint-staged",
+    "test": "eslint 'source/*.js' --fix && stylelint 'source/*.css' --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSSDay/2017-cssdayio.git"
+  },
+  "author": "meltmedia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CSSDay/2017-cssdayio/issues"
+  },
+  "homepage": "https://2017.cssday.io",
+  "dependencies": {
+    "autoprefixer": "^7.1.4",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "css-mqpacker": "^6.0.1",
+    "cssnano": "^3.10.0",
+    "postcss": "^6.0.11",
+    "postcss-custom-media": "^6.0.0",
+    "postcss-focus": "^2.0.0",
+    "postcss-import": "^10.0.0",
+    "postcss-nested": "^2.1.2",
+    "postcss-uncss": "^0.15.0",
+    "pug": "^2.0.0-rc.4",
+    "uncss": "^0.15.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "cross-env": "^5.0.5",
+    "eslint": "^4.6.1",
+    "eslint-config-prettier": "^2.4.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.1.3",
+    "nodemon": "^1.12.0",
+    "prettier": "^1.6.1",
+    "stylelint": "^8.1.1",
+    "stylelint-config-meltmedia": "https://github.com/meltmedia/stylelint-config-meltmedia"
+  },
+  "browserlist": [
+    "last 2 versions",
+    "> 5%"
+  ],
+  "stylelint": {
+    "extends": "stylelint-config-meltmedia"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2016,
+      "sourceType": "module"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --print-width=120 --trailing-comma=es5 --single-quote --write",
+      "git add"
+    ],
+    "*.css": [
+      "stylelint"
+    ]
+  }
+}
