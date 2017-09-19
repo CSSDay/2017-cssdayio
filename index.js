@@ -4,6 +4,12 @@ const pug = require('pug');
 const postcss = require('postcss');
 const babel = require('babel-core');
 
+const dir = './public';
+
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir);
+}
+
 // compile pug
 pug.renderFile(
   path.join(__dirname, 'source/index.pug'),
